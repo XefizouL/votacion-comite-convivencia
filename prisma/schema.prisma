@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Módulo de Convocatoria
+model Convocation {
+  id           String   @id @default(uuid())
+  title        String
+  openDate     DateTime
+  closeDate    DateTime
+  requirements String
+  reglamentUrl String?  // URL del PDF guardado
+  createdAt    DateTime @default(now())
+}
+
+// Módulo de Registro (Funcionarios)
+model User {
+  id          String   @id @default(uuid())
+  fullName    String
+  documentId  String   @unique // Cédula o Documento
+  email       String   @unique
+  dependency  String
+  role        Role     @default(VOTER)
+  hasVoted    Boolean  @default(false)
+  vote        Vote?    // Relación 1 a 1 (Solo puede votar una vez)
+  createdAt   DateTime @default(now())
+}
+
+enum Role {
+  VOTER
+  ADMIN
+}
+
+// Módulo de Postulación de Candidatos
+model Candidate {
+  id          String         @id @default(uuid())
+  fullName    String
+  position    String
+  dependency  String
+  photoUrl    String
+  status      CandidateStatus @default(PENDING)
+  votes       Vote[]         // Relación 1 a N (Recibe muchos votos)
+  createdAt   DateTime       @default(now())
+}
+
+enum CandidateStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+// Módulo de Votación
+model Vote {
+  id          String    @id @default(uuid())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String    @unique // Garantiza que un usuario tenga solo 1 voto
+  candidate   Candidate @relation(fields: [candidateId], references: [id])
+  candidateId String
+  createdAt   DateTime  @default(now())
+}
