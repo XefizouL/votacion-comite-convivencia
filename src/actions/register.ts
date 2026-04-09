@@ -5,9 +5,8 @@ export async function registerUser(formData: FormData) {
   const fullName = formData.get('fullName') as string;
   const documentId = formData.get('documentId') as string;
   const email = formData.get('email') as string;
-  const dependency = formData.get('dependency') as string;
 
-  if (!fullName || !documentId || !email || !dependency) {
+  if (!fullName || !documentId || !email) {
     return { error: "Todos los campos son obligatorios." };
   }
 
@@ -29,7 +28,6 @@ export async function registerUser(formData: FormData) {
         fullName,
         documentId,
         email,
-        dependency,
         role: "VOTER"
       }
     });

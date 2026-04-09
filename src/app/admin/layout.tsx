@@ -8,29 +8,33 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname();
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Sub-menú del Administrador */}
-      <div className="bg-gray-900 text-white shadow-md">
-        <div className="max-w-6xl mx-auto px-8 py-3 flex gap-6">
+    <div className="min-h-screen bg-slate-50 text-wp-black">
+
+      <div className="bg-wp-primary text-wp-white shadow-md border-b border-black">
+        <div className="max-w-6xl mx-auto px-8 py-4 flex flex-wrap gap-4">
+
           <Link 
-            href="/admin/candidatos" 
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition ${pathname === '/admin/candidatos' ? 'bg-gray-800 text-white' : 'text-gray-400 hover:text-white hover:bg-gray-800'}`}
+            href="/admin/candidatos"
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition 
+            ${pathname === '/admin/candidatos' ? 'bg-wp-white text-wp-primary border border-black' : 'text-wp-white hover:bg-wp-white/10'}`}
           >
-            <UsersRound className="h-4 w-4" /> Gestión de Candidatos
+            <UsersRound className="h-4 w-4" />
+            Candidatos
           </Link>
+
           <Link 
-            href="/admin/resultados" 
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition ${pathname === '/admin/resultados' ? 'bg-gray-800 text-white' : 'text-gray-400 hover:text-white hover:bg-gray-800'}`}
+            href="/admin/resultados"
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition 
+            ${pathname === '/admin/resultados' ? 'bg-wp-white text-wp-primary border border-black' : 'text-wp-white hover:bg-wp-white/10'}`}
           >
-            <BarChart3 className="h-4 w-4" /> Resultados y Reportes
+            <BarChart3 className="h-4 w-4" />
+            Resultados
           </Link>
+
         </div>
       </div>
 
-      {/* Aquí cargan las páginas de candidatos o resultados */}
-      <div>
-        {children}
-      </div>
+      <div className="max-w-6xl mx-auto px-8 py-8">{children}</div>
     </div>
   );
 }

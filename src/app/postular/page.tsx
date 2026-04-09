@@ -19,59 +19,46 @@ export default function PostulatePage() {
     const formData = new FormData(event.currentTarget);
     const response = await createCandidate(formData);
 
-    if (response.error) {
-      setError(response.error);
-    } else if (response.success) {
-      setSuccess(response.success);
-      (event.target as HTMLFormElement).reset();
-    }
-    
+    if (response.error) setError(response.error);
+    if (response.success) setSuccess(response.success);
+
     setLoading(false);
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+    <main className="min-h-screen bg-wp-primary flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-wp-white p-8 rounded-xl shadow-lg border border-black">
         
-        <Link href="/" className="inline-flex items-center text-sm text-blue-600 hover:underline mb-6">
-          <ArrowLeft className="h-4 w-4 mr-1" /> Volver al Inicio
+        <Link href="/" className="inline-flex items-center text-sm text-wp-primary mb-6">
+          <ArrowLeft className="mr-1" /> Volver
         </Link>
 
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Postulación de Candidato</h2>
+        <h2 className="text-2xl font-bold text-wp-black mb-6 text-center">
+          Postulación de Candidato
+        </h2>
 
-        {error && <div className="bg-red-50 text-red-600 p-3 rounded mb-4 text-sm border border-red-200">{error}</div>}
-        {success && <div className="bg-green-50 text-green-600 p-3 rounded mb-4 text-sm border border-green-200">{success}</div>}
+        {error && <div className="bg-wp-red/10 text-wp-red p-3 rounded mb-4">{error}</div>}
+        {success && <div className="bg-wp-green/10 text-wp-green p-3 rounded mb-4">{success}</div>}
 
-        <form onSubmit={onSubmit} className="space-y-4 text-gray-800">
-          <div>
-            <label className="block text-sm font-medium mb-1">Nombre del Candidato</label>
-            <input type="text" name="fullName" required className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500 outline-none" />
-          </div>
+        <form onSubmit={onSubmit} className="space-y-4 text-wp-black">
 
-          <div>
-            <label className="block text-sm font-medium mb-1">Cargo Actual</label>
-            <input type="text" name="position" required className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ej: Analista de Sistemas" />
-          </div>
+          <input name="fullName" placeholder="Nombre" required className="w-full border p-2 rounded focus:ring-2 focus:ring-wp-blue" />
+          <input name="position" placeholder="Cargo" required className="w-full border p-2 rounded focus:ring-2 focus:ring-wp-blue" />
 
           <div>
-            <label className="block text-sm font-medium mb-1">Dependencia</label>
-            <input type="text" name="dependency" required className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ej: Tecnología" />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-1 flex items-center">
-              <Upload className="h-4 w-4 mr-1" /> Fotografía (JPG, PNG)
+            <label className="text-sm flex items-center mb-1">
+              <Upload className="mr-1 h-4 w-4" /> Foto
             </label>
-            <input type="file" name="photo" accept="image/*" required className="w-full border rounded-lg p-2 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+            <input type="file" name="photo" required className="w-full border p-2 rounded" />
           </div>
 
           <button 
-            type="submit" 
             disabled={loading}
-            className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition disabled:opacity-50 mt-4"
+            className="w-full theme-button"
           >
-            {loading ? "Enviando postulación..." : "Postularme"}
+            {loading ? "Enviando..." : "Postularme"}
           </button>
+
         </form>
       </div>
     </main>

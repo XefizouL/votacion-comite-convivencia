@@ -48,9 +48,9 @@ export default function ReportButtons({ results, voters, totalVotes }: Props) {
 
     // Si hay ganadores, mostrarlos en el Acta
     if (results.length > 0) {
-      doc.setFont(undefined, 'bold');
+      doc.setFont("helvetica", 'bold');
       doc.text("CANDIDATOS ELECTOS:", 14, 50);
-      doc.setFont(undefined, 'normal');
+      doc.setFont("helvetica", 'normal');
       doc.text(`Candidato Principal: ${results[0].fullName} (${results[0]._count.votes} Votos)`, 14, 58);
       
       if (results[1]) {
@@ -92,7 +92,7 @@ export default function ReportButtons({ results, voters, totalVotes }: Props) {
     <div className="flex gap-4">
       <button 
         onClick={exportToExcel}
-        className="flex items-center bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition shadow"
+        className="flex items-center theme-button px-4 py-2"
       >
         <TableProperties className="h-4 w-4 mr-2" />
         Excel Votantes
@@ -100,7 +100,7 @@ export default function ReportButtons({ results, voters, totalVotes }: Props) {
 
       <button 
         onClick={exportToPDF}
-        className="flex items-center bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition shadow"
+        className="flex items-center theme-button px-4 py-2"
       >
         <FileText className="h-4 w-4 mr-2" />
         Acta PDF
