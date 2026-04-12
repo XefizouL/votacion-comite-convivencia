@@ -6,7 +6,7 @@ import ReportButtons from "@/components/ReportButtons";
 export default async function ResultsPage() {
   const results = await getElectionResults();
   const voters = await getVotersList();
-  const convocation = await getConvocation();
+  const convocation = await getConvocation(); 
   const openDate = convocation?.openDate ? new Date(convocation.openDate).toLocaleDateString("es-CL", { day: "2-digit", month: "long", year: "numeric" }) : "-";
   const closeDate = convocation?.closeDate ? new Date(convocation.closeDate).toLocaleDateString("es-CL", { day: "2-digit", month: "long", year: "numeric" }) : "-";
 
@@ -18,8 +18,10 @@ export default async function ResultsPage() {
   return (
     <main className="min-h-screen bg-slate-50 p-8">
       <div className="max-w-6xl mx-auto">
-        <div className="grid gap-6 mb-8 lg:grid-cols-3">
-          <div className="lg:col-span-2 bg-wp-white rounded-3xl border border-black/10 p-6 shadow-lg">
+        
+        {/* CRONOGRAMA INTACTO - Solo se quitó la caja de firmas */}
+        <div className="mb-8">
+          <div className="bg-wp-white rounded-3xl border border-black/10 p-6 shadow-lg">
             <h2 className="text-xl font-bold text-wp-black mb-4">Cronograma</h2>
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="rounded-3xl border border-black/10 bg-slate-100 p-5">
@@ -29,19 +31,6 @@ export default async function ResultsPage() {
               <div className="rounded-3xl border border-black/10 bg-slate-100 p-5">
                 <p className="text-sm uppercase tracking-[0.2em] text-wp-black/70 mb-2">Cierre / Votaciones</p>
                 <p className="text-lg font-semibold text-wp-black">{closeDate}</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-wp-white rounded-3xl border border-black/10 p-6 shadow-lg">
-            <h2 className="text-xl font-bold text-wp-black mb-4">Firmas</h2>
-            <div className="space-y-4">
-              <div className="rounded-3xl border border-black/10 bg-slate-100 p-5">
-                <p className="text-sm uppercase tracking-[0.2em] text-wp-black/70 mb-2">Director ejecutivo</p>
-                <div className="h-12 rounded-2xl bg-white border border-black/10" />
-              </div>
-              <div className="rounded-3xl border border-black/10 bg-slate-100 p-5">
-                <p className="text-sm uppercase tracking-[0.2em] text-wp-black/70 mb-2">Área SST</p>
-                <div className="h-12 rounded-2xl bg-white border border-black/10" />
               </div>
             </div>
           </div>

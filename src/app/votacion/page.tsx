@@ -37,7 +37,7 @@ export default function VotacionPage() {
     }
   };
 
-  // ✅ Pantalla éxito
+  // Pantalla éxito
   if (successMsg) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-wp-primary p-4">

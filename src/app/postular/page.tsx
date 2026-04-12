@@ -42,8 +42,8 @@ export default function PostulatePage() {
 
         <form onSubmit={onSubmit} className="space-y-4 text-wp-black">
 
-          <input name="fullName" placeholder="Nombre" required className="w-full border p-2 rounded focus:ring-2 focus:ring-wp-blue" />
-          <input name="position" placeholder="Cargo" required className="w-full border p-2 rounded focus:ring-2 focus:ring-wp-blue" />
+          <input name="fullName" placeholder="Nombre y Apellido" required className="w-full border p-2 rounded focus:ring-2 focus:ring-wp-blue" />
+          <input name="position" placeholder="cargo" required className="w-full border p-2 rounded focus:ring-2 focus:ring-wp-blue" />
 
           <div>
             <label className="text-sm flex items-center mb-1">

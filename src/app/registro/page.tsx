@@ -42,9 +42,9 @@ export default function RegisterPage() {
 
         <form onSubmit={onSubmit} className="space-y-4 text-wp-black">
 
-          <input name="fullName" placeholder="Nombre" required className="w-full border p-2 rounded focus:ring-2 focus:ring-wp-blue" />
-          <input name="documentId" placeholder="Documento" required className="w-full border p-2 rounded focus:ring-2 focus:ring-wp-blue" />
-          <input name="email" type="email" placeholder="Correo" required className="w-full border p-2 rounded focus:ring-2 focus:ring-wp-blue" />
+          <input name="fullName" placeholder="Nombre y Apellido" required className="w-full border p-2 rounded focus:ring-2 focus:ring-wp-blue" />
+          <input name="documentId" placeholder="Nº de documento" required className="w-full border p-2 rounded focus:ring-2 focus:ring-wp-blue" />
+          <input name="email" type="email" placeholder="Correo Electronico" required className="w-full border p-2 rounded focus:ring-2 focus:ring-wp-blue" />
 
           <button 
             type="submit"

@@ -20,7 +20,7 @@ export default function Navbar() {
               <div className="bg-wp-white p-2 rounded-lg border border-black">
                 <Vote className="h-6 w-6 text-wp-primary" />
               </div>
-              <span className="font-bold text-xl text-wp-white tracking-tight">Agro<span className="text-wp-white">Votos</span></span>
+              <span className="font-bold text-xl text-wp-white tracking-tight">ASMETA</span>
             </Link>
           </div>
 

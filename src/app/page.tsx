@@ -21,21 +21,7 @@ export default async function Home() {
             <p className="mt-6 text-lg text-white/85 max-w-3xl mx-auto">
               Plataforma oficial para la democracia, transparencia y gestión de las elecciones del comité.
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
-              <a
-                href={convocation?.reglamentUrl || "#"}
-                target="_blank"
-                className="inline-flex items-center justify-center gap-2 bg-wp-white text-wp-primary px-6 py-3 rounded-full font-bold border border-black shadow-lg hover:bg-wp-white/90 transition"
-              >
-                <FileText className="h-5 w-5" /> Ver Reglamento
-              </a>
-              <Link
-                href="/registro"
-                className="inline-flex items-center justify-center gap-2 bg-wp-white text-wp-primary px-6 py-3 rounded-full font-bold border border-black shadow-lg hover:bg-wp-white/90 transition"
-              >
-                <CheckCircle className="h-5 w-5" /> Registrarse
-              </Link>
-            </div>
+           
           </div>
           <div className="grid md:grid-cols-3 gap-4 bg-wp-white px-6 py-8 border-t border-black">
             <div className="rounded-3xl border border-black/10 bg-slate-100 p-5 text-left">
@@ -53,39 +39,40 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Cronograma y firmas */}
-        <section className="grid lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 bg-wp-white rounded-[28px] border border-black/10 shadow-xl p-8">
-            <h2 className="text-2xl font-bold text-wp-black mb-4">Cronograma de la convocatoria</h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-3xl border border-black/10 bg-slate-100 p-5">
-                <p className="text-sm uppercase tracking-[0.2em] text-wp-black/70 mb-2">Inicio de convocatoria</p>
-                <p className="text-xl font-semibold text-wp-black">{openDate}</p>
-              </div>
-              <div className="rounded-3xl border border-black/10 bg-slate-100 p-5">
-                <p className="text-sm uppercase tracking-[0.2em] text-wp-black/70 mb-2">Cierre de convocatoria</p>
-                <p className="text-xl font-semibold text-wp-black">{closeDate}</p>
-              </div>
-            </div>
-            <div className="mt-6 bg-wp-primary/10 rounded-3xl border border-wp-primary/20 p-6">
+        {/* Requisitos y Perfil */}
+        <section className="bg-wp-white rounded-[28px] border border-black/10 shadow-xl p-8">
+          <h2 className="text-2xl font-bold text-wp-black mb-6">Detalles de la convocatoria</h2>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            
+            {/* Bloque: Requisitos */}
+            <div className="bg-wp-primary/10 rounded-3xl border border-wp-primary/20 p-6">
               <p className="text-sm uppercase tracking-[0.2em] text-wp-primary font-semibold mb-3">Requisitos</p>
-              <p className="whitespace-pre-line text-wp-black/80 leading-relaxed">{convocation?.requirements}</p>
+              <ul className="list-disc list-inside text-wp-black/80 leading-relaxed space-y-1">
+                {convocation?.requirements
+                   ?.split("\n")
+                    .filter(item => item.trim() !== "")
+                     .map((item, index) => (
+                       <li key={index}>{item}</li>
+                  ))}
+              </ul>
             </div>
-          </div>
 
-          <div className="space-y-6">
-            <div className="bg-wp-white rounded-[28px] border border-black/10 shadow-xl p-6">
-              <h3 className="text-lg font-semibold text-wp-black mb-4">Firma director ejecutivo</h3>
-              <div className="h-24 rounded-3xl border border-black/10 bg-slate-100 flex items-center justify-center text-wp-black/60">
-                Área de Firma
-              </div>
+            {/* Bloque Nuevo: Perfil y Competencias */}
+            <div className="bg-wp-primary/10 rounded-3xl border border-wp-primary/20 p-6">
+              <p className="text-sm uppercase tracking-[0.2em] text-wp-primary font-semibold mb-3">Perfil y Competencias Requeridas</p>
+             
+              <ul className="list-disc list-inside text-wp-black/80 leading-relaxed space-y-1">
+                <li>Respeto por los demás y por las normas</li>
+                <li>Capacidad de escucha activa</li>
+                <li>Imparcialidad en la toma de decisiones</li>
+                <li>Discreción y manejo confidencial de información</li>
+                <li>Equilibrio emocional y serenidad</li>
+                <li>Habilidades de mediación y resolución de conflictos</li>
+                <li>Comunicación asertiva y ética profesional</li>
+              </ul>
             </div>
-            <div className="bg-wp-white rounded-[28px] border border-black/10 shadow-xl p-6">
-              <h3 className="text-lg font-semibold text-wp-black mb-4">Firma Área SST</h3>
-              <div className="h-24 rounded-3xl border border-black/10 bg-slate-100 flex items-center justify-center text-wp-black/60">
-                Área de Firma
-              </div>
-            </div>
+
           </div>
         </section>
 
