@@ -1,7 +1,7 @@
 import { getAllCandidates, approveCandidate, rejectCandidate } from "@/actions/candidates";
 import { getConvocation } from "@/actions/convocation";
 
-// ✅ Server Actions correctamente definidas
+
 async function approveCandidateAction(candidateId: string, formData: FormData) {
   "use server";
   await approveCandidate(candidateId);
@@ -44,7 +44,7 @@ export default async function AdminCandidatesPage() {
           Aprueba o rechaza las postulaciones (Máximo 4 candidatos oficiales).
         </p>
 
-        {/* FECHAS INTACTAS - Solo se quitó la caja de firmas */}
+    
         <div className="grid gap-6 mb-8 md:grid-cols-2">
           <div className="rounded-3xl border border-black/10 bg-slate-100 p-6">
             <p className="text-sm uppercase tracking-[0.25em] text-wp-primary font-semibold mb-2">
@@ -61,7 +61,7 @@ export default async function AdminCandidatesPage() {
           </div>
         </div>
 
-        {/* Tabla */}
+        
         <div className="bg-wp-white rounded-xl shadow-sm border border-black overflow-hidden">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -85,7 +85,7 @@ export default async function AdminCandidatesPage() {
               {candidates.map((candidate) => (
                 <tr key={candidate.id} className="border-b hover:bg-wp-primary/10">
                   
-                  {/* Foto */}
+                 
                   <td className="p-4">
                     <img
                       src={candidate.photoUrl}
@@ -94,12 +94,12 @@ export default async function AdminCandidatesPage() {
                     />
                   </td>
 
-                  {/* Nombre */}
+                  
                   <td className="p-4 font-medium text-wp-black">
                     {candidate.fullName}
                   </td>
 
-                  {/* Estado */}
+                  
                   <td className="p-4">
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-semibold

@@ -45,7 +45,7 @@ export default async function Home() {
           
           <div className="grid md:grid-cols-2 gap-6">
             
-            {/* Bloque: Requisitos */}
+            {/*Requisitos */}
             <div className="bg-wp-primary/10 rounded-3xl border border-wp-primary/20 p-6">
               <p className="text-sm uppercase tracking-[0.2em] text-wp-primary font-semibold mb-3">Requisitos</p>
               <ul className="list-disc list-inside text-wp-black/80 leading-relaxed space-y-1">
@@ -58,7 +58,7 @@ export default async function Home() {
               </ul>
             </div>
 
-            {/* Bloque Nuevo: Perfil y Competencias */}
+            {/*Perfil y Competencias */}
             <div className="bg-wp-primary/10 rounded-3xl border border-wp-primary/20 p-6">
               <p className="text-sm uppercase tracking-[0.2em] text-wp-primary font-semibold mb-3">Perfil y Competencias Requeridas</p>
              
@@ -76,7 +76,7 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Accesos rápidos */}
+       
         <div className="grid md:grid-cols-3 gap-6">
 
           <div className="bg-wp-white p-6 rounded-xl border border-black shadow hover:shadow-lg text-center">

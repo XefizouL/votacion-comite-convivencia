@@ -19,7 +19,7 @@ export default async function ResultsPage() {
     <main className="min-h-screen bg-slate-50 p-8">
       <div className="max-w-6xl mx-auto">
         
-        {/* CRONOGRAMA INTACTO - Solo se quitó la caja de firmas */}
+      
         <div className="mb-8">
           <div className="bg-wp-white rounded-3xl border border-black/10 p-6 shadow-lg">
             <h2 className="text-xl font-bold text-wp-black mb-4">Cronograma</h2>
@@ -41,20 +41,19 @@ export default async function ResultsPage() {
             <h1 className="text-3xl font-bold text-wp-black">Resultados Oficiales</h1>
             <p className="text-wp-black/70">Escrutinio automático en tiempo real</p>
           </div>
-          {/* Aquí irán los botones de Excel y PDF */}
+         
           <ReportButtons results={results} voters={voters} totalVotes={totalVotes} />
         </div>
 
-        {/* Tarjetas de Ganadores */}
+       
         <div className="grid md:grid-cols-2 gap-6 mb-8">
-          {/* Principal */}
+          
           {winner && (
             <div className="bg-wp-white p-6 rounded-xl border border-black shadow-lg flex items-center gap-6">
               <Trophy className="h-16 w-16 text-wp-primary" />
               <div>
                 <p className="text-sm font-bold text-wp-primary uppercase tracking-wide">Candidato Principal</p>
                 <h2 className="text-2xl font-bold text-wp-black">{winner.fullName}</h2>
-                <p className="text-wp-black/70">{winner.dependency}</p>
                 <div className="mt-2 inline-block bg-wp-primary text-white px-3 py-1 rounded-full text-sm font-semibold shadow">
                   {winner._count.votes} Votos
                 </div>
@@ -62,14 +61,13 @@ export default async function ResultsPage() {
             </div>
           )}
 
-          {/* Suplente */}
+          
           {substitute && (
             <div className="bg-wp-white p-6 rounded-xl border border-black shadow-lg flex items-center gap-6">
               <Medal className="h-16 w-16 text-wp-primary" />
               <div>
                 <p className="text-sm font-bold text-wp-primary uppercase tracking-wide">Candidato Suplente</p>
                 <h2 className="text-2xl font-bold text-wp-black">{substitute.fullName}</h2>
-                <p className="text-wp-black/70">{substitute.dependency}</p>
                 <div className="mt-2 inline-block bg-wp-primary text-white px-3 py-1 rounded-full text-sm font-semibold shadow">
                   {substitute._count.votes} Votos
                 </div>
@@ -78,7 +76,7 @@ export default async function ResultsPage() {
           )}
         </div>
 
-        {/* Tabla General de Resultados */}
+      
         <div className="bg-wp-white rounded-xl shadow-lg border border-black overflow-hidden">
           <table className="w-full text-left border-collapse">
             <thead>
