@@ -15,14 +15,17 @@ export default async function Home() {
         <section className="bg-wp-primary border border-black rounded-[28px] shadow-2xl overflow-hidden">
           <div className="bg-wp-primary/95 px-8 py-12 text-center">
             <p className="text-sm uppercase tracking-[0.3em] text-white/80 mb-3">Convocatoria oficial</p>
+            
+          
             <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight">
-              {convocation?.title}
+              Comité de Convivencia Laboral ASMETA 2026-2028
             </h1>
+            
             <p className="mt-6 text-lg text-white/85 max-w-3xl mx-auto">
               Plataforma oficial para la democracia, transparencia y gestión de las elecciones del comité.
             </p>
-           
           </div>
+
           <div className="grid md:grid-cols-3 gap-4 bg-wp-white px-6 py-8 border-t border-black">
             <div className="rounded-3xl border border-black/10 bg-slate-100 p-5 text-left">
               <p className="text-sm font-semibold text-wp-primary uppercase tracking-[0.25em] mb-2">Inicio</p>
@@ -61,7 +64,7 @@ export default async function Home() {
             {/*Perfil y Competencias */}
             <div className="bg-wp-primary/10 rounded-3xl border border-wp-primary/20 p-6">
               <p className="text-sm uppercase tracking-[0.2em] text-wp-primary font-semibold mb-3">Perfil y Competencias Requeridas</p>
-             
+              
               <ul className="list-disc list-inside text-wp-black/80 leading-relaxed space-y-1">
                 <li>Respeto por los demás y por las normas</li>
                 <li>Capacidad de escucha activa</li>
@@ -76,7 +79,7 @@ export default async function Home() {
           </div>
         </section>
 
-       
+        {/* Acciones */}
         <div className="grid md:grid-cols-3 gap-6">
 
           <div className="bg-wp-white p-6 rounded-xl border border-black shadow hover:shadow-lg text-center">
