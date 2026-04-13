@@ -20,7 +20,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <div className="bg-white text-wp-white shadow-md border-b border-black">
         <div className="max-w-6xl mx-auto px-8 py-4 flex flex-wrap gap-4 justify-between items-center">
 
-          {/* 🔹 NAV */}
+       
           <div className="flex gap-4">
             <Link 
               href="/admin/candidatos"
@@ -41,7 +41,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </Link>
           </div>
 
-          {/* 🔥 BOTÓN LOGOUT */}
+        
           <button
             onClick={handleLogout}
             className="flex items-center gap-2 bg-red-600 px-4 py-2 rounded-lg text-sm font-medium border border-black transition"

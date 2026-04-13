@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Vote, Users, ShieldCheck, FileCheck2, LogIn } from "lucide-react";
+import { Users, ShieldCheck, FileCheck2, LogIn } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -14,12 +14,14 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           
-          {/* Logo */}
+          {/* Logo modificado con tu imagen */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center gap-2">
-              <div className="bg-wp-white p-2 rounded-lg border border-black">
-                <Vote className="h-6 w-6 text-wp-primary" />
-              </div>
+              <img 
+                src="/logo.png" 
+                alt="Logo ASMETA" 
+                className="h-10 w-auto object-contain rounded-md" 
+              />
               <span className="font-bold text-xl text-wp-white tracking-tight">ASMETA</span>
             </Link>
           </div>
