@@ -14,7 +14,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           
-          {/* Logo modificado con tu imagen */}
+      
           <div className="flex items-center">
             <Link href="/" className="flex items-center gap-2">
               <img 
@@ -39,7 +39,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Botón Destacado (Amarillo Institucional) */}
+         
           <div className="flex items-center">
             <Link href="/login" className="bg-wp-white text-wp-primary px-5 py-2 rounded-lg text-sm font-bold transition shadow border border-black flex items-center gap-2 hover:bg-wp-white/90">
               <LogIn className="h-4 w-4" /> Ingresar a Votar
