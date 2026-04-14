@@ -25,9 +25,9 @@ export async function getVotersList() {
     select: {
       fullName: true,
       documentId: true,
-      dependency: true,
       hasVoted: true,
       createdAt: true
+    
     },
     orderBy: {
       createdAt: 'desc'

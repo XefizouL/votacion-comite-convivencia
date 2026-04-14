@@ -4,103 +4,108 @@ import { Calendar, FileText, CheckCircle, Users, ArrowRight, Upload, Vote } from
 
 export default async function Home() {
   const convocation = await getConvocation();
+  const openDate = convocation?.openDate ? new Date(convocation.openDate).toLocaleDateString("es-CL", { day: "2-digit", month: "long", year: "numeric" }) : "-";
+  const closeDate = convocation?.closeDate ? new Date(convocation.closeDate).toLocaleDateString("es-CL", { day: "2-digit", month: "long", year: "numeric" }) : "-";
 
   return (
-    <main className="py-12 px-4 sm:px-8">
-      <div className="max-w-5xl mx-auto space-y-8">
-        
-        {/* Banner Principal (Gradiente Institucional) */}
-        <div className="bg-gradient-to-r from-brand-dark to-brand-light p-10 rounded-2xl shadow-lg border border-brand-dark text-center relative overflow-hidden">
-          {/* Decoración abstracta de fondo */}
-          <div className="absolute top-0 right-0 -mt-10 -mr-10 bg-brand-yellow opacity-20 w-40 h-40 rounded-full blur-2xl"></div>
-          <div className="absolute bottom-0 left-0 -mb-10 -ml-10 bg-white opacity-10 w-40 h-40 rounded-full blur-2xl"></div>
-          
-          <h1 className="text-4xl font-extrabold text-brand-white mb-4 tracking-tight relative z-10">
-            {convocation?.title}
-          </h1>
-          <p className="text-lg text-brand-white/90 max-w-2xl mx-auto relative z-10">
-            Plataforma oficial para la democracia, el desarrollo rural y la transparencia institucional.
-          </p>
-          
-          <div className="mt-8 relative z-10">
-            <a 
-              href={convocation?.reglamentUrl || "#"} 
-              target="_blank"
-              className="inline-flex items-center text-brand-dark bg-brand-yellow px-6 py-3 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg"
-            >
-              <FileText className="mr-2 h-5 w-5" /> Ver Resolución / Reglamento (PDF)
-            </a>
-          </div>
-        </div>
+    <main className="py-12 px-4 sm:px-8 bg-slate-50 min-h-screen">
+      <div className="mx-auto max-w-7xl space-y-8">
 
-        {/* Pasos del Proceso */}
+        {/* Banner */}
+        <section className="bg-wp-primary border border-black rounded-[28px] shadow-2xl overflow-hidden">
+          <div className="bg-wp-primary/95 px-8 py-12 text-center">
+            <p className="text-sm uppercase tracking-[0.3em] text-white/80 mb-3">Convocatoria oficial</p>
+            
+          
+            <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight">
+              Comité de Convivencia Laboral ASMETA 2026-2028
+            </h1>
+            
+            <p className="mt-6 text-lg text-white/85 max-w-3xl mx-auto">
+              Plataforma oficial para la democracia, transparencia y gestión de las elecciones del comité.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-4 bg-wp-white px-6 py-8 border-t border-black">
+            <div className="rounded-3xl border border-black/10 bg-slate-100 p-5 text-left">
+              <p className="text-sm font-semibold text-wp-primary uppercase tracking-[0.25em] mb-2">Inicio</p>
+              <p className="text-2xl font-bold text-wp-black">{openDate}</p>
+            </div>
+            <div className="rounded-3xl border border-black/10 bg-slate-100 p-5 text-left">
+              <p className="text-sm font-semibold text-wp-primary uppercase tracking-[0.25em] mb-2">Cierre</p>
+              <p className="text-2xl font-bold text-wp-black">{closeDate}</p>
+            </div>
+            <div className="rounded-3xl border border-black/10 bg-slate-100 p-5 text-left">
+              <p className="text-sm font-semibold text-wp-primary uppercase tracking-[0.25em] mb-2">Votaciones</p>
+              <p className="text-2xl font-bold text-wp-black">{openDate} - {closeDate}</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Requisitos y Perfil */}
+        <section className="bg-wp-white rounded-[28px] border border-black/10 shadow-xl p-8">
+          <h2 className="text-2xl font-bold text-wp-black mb-6">Detalles de la convocatoria</h2>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            
+            {/*Requisitos */}
+            <div className="bg-wp-primary/10 rounded-3xl border border-wp-primary/20 p-6">
+              <p className="text-sm uppercase tracking-[0.2em] text-wp-primary font-semibold mb-3">Requisitos</p>
+              <ul className="list-disc list-inside text-wp-black/80 leading-relaxed space-y-1">
+                {convocation?.requirements
+                   ?.split("\n")
+                    .filter(item => item.trim() !== "")
+                     .map((item, index) => (
+                       <li key={index}>{item}</li>
+                  ))}
+              </ul>
+            </div>
+
+            {/*Perfil y Competencias */}
+            <div className="bg-wp-primary/10 rounded-3xl border border-wp-primary/20 p-6">
+              <p className="text-sm uppercase tracking-[0.2em] text-wp-primary font-semibold mb-3">Perfil y Competencias Requeridas</p>
+              
+              <ul className="list-disc list-inside text-wp-black/80 leading-relaxed space-y-1">
+                <li>Respeto por los demás y por las normas</li>
+                <li>Capacidad de escucha activa</li>
+                <li>Imparcialidad en la toma de decisiones</li>
+                <li>Discreción y manejo confidencial de información</li>
+                <li>Equilibrio emocional y serenidad</li>
+                <li>Habilidades de mediación y resolución de conflictos</li>
+                <li>Comunicación asertiva y ética profesional</li>
+              </ul>
+            </div>
+
+          </div>
+        </section>
+
+        {/* Acciones */}
         <div className="grid md:grid-cols-3 gap-6">
-          
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:border-brand-light transition group">
-            <div className="bg-brand-light/10 p-4 rounded-full text-brand-dark mb-4 group-hover:scale-110 transition">
-              <Users className="h-8 w-8" />
-            </div>
-            <h3 className="text-xl font-bold mb-2 text-brand-dark">1. Regístrese</h3>
-            <p className="text-gray-500 text-sm mb-6 flex-grow">
-              Todo funcionario debe registrarse en el censo electoral para poder postularse o votar.
-            </p>
-            <Link href="/registro" className="w-full flex justify-center items-center bg-gray-100 text-brand-dark font-bold py-2 rounded-lg hover:bg-gray-200 transition">
-              Ir a Registro <ArrowRight className="h-4 w-4 ml-2" />
+
+          <div className="bg-wp-white p-6 rounded-xl border border-black shadow hover:shadow-lg text-center">
+            <Users className="mx-auto text-wp-primary mb-3" />
+            <h3 className="font-bold text-wp-black">Regístrese</h3>
+            <Link href="/registro" className="block mt-4 bg-wp-primary text-white p-2 rounded border border-black hover:bg-wp-primary/90">
+              Ir
             </Link>
           </div>
 
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:border-brand-light transition group">
-            <div className="bg-brand-light/10 p-4 rounded-full text-brand-dark mb-4 group-hover:scale-110 transition">
-              <Upload className="h-8 w-8" />
-            </div>
-            <h3 className="text-xl font-bold mb-2 text-brand-dark">2. Postúlese</h3>
-            <p className="text-gray-500 text-sm mb-6 flex-grow">
-              ¿Cumple los requisitos? Envíe su fotografía y datos para ser candidato oficial.
-            </p>
-            <Link href="/postular" className="w-full flex justify-center items-center bg-brand-light text-white font-bold py-2 rounded-lg hover:bg-brand-dark transition">
-              Postularme <ArrowRight className="h-4 w-4 ml-2" />
+          <div className="bg-wp-white p-6 rounded-xl border border-black shadow hover:shadow-lg text-center">
+            <Upload className="mx-auto text-wp-primary mb-3" />
+            <h3 className="font-bold text-wp-black">Postularse</h3>
+            <Link href="/postular" className="block mt-4 bg-wp-primary text-white p-2 rounded border border-black hover:bg-wp-primary/90">
+              Postular
             </Link>
           </div>
 
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-brand-light shadow-brand-light/20 flex flex-col items-center text-center hover:shadow-brand-light/40 transition group">
-            <div className="bg-brand-yellow p-4 rounded-full text-brand-dark mb-4 group-hover:scale-110 transition">
-              <Vote className="h-8 w-8" />
-            </div>
-            <h3 className="text-xl font-bold mb-2 text-brand-dark">3. Votación</h3>
-            <p className="text-gray-600 text-sm mb-6 flex-grow font-medium">
-              Ingrese el día de las elecciones con su documento y elija a su representante.
-            </p>
-            <Link href="/login" className="w-full flex justify-center items-center bg-brand-dark text-white font-bold py-2 rounded-lg hover:opacity-90 transition">
-              Ir a Votar <ArrowRight className="h-4 w-4 ml-2" />
+          <div className="bg-wp-white p-6 rounded-xl border border-black shadow hover:shadow-lg text-center">
+            <Vote className="mx-auto text-wp-primary mb-3" />
+            <h3 className="font-bold text-wp-black">Votar</h3>
+            <Link href="/login" className="block mt-4 bg-wp-primary text-white p-2 rounded border border-black hover:bg-wp-primary/90">
+              Votar
             </Link>
           </div>
 
-        </div>
-
-        {/* Info Extra */}
-        <div className="grid md:grid-cols-2 gap-6 pt-4">
-          <div className="bg-white p-6 rounded-xl border-l-4 border-brand-light shadow-sm">
-            <h2 className="text-lg font-bold text-brand-dark flex items-center mb-4">
-              <Calendar className="mr-2 h-5 w-5 text-brand-light" /> Cronograma Oficial
-            </h2>
-            <div className="flex justify-between items-center bg-gray-50 p-3 rounded-lg border mb-2">
-              <span className="text-sm font-medium text-gray-600">Apertura</span>
-              <span className="text-sm font-bold text-brand-dark">{convocation?.openDate.toLocaleDateString('es-ES')}</span>
-            </div>
-            <div className="flex justify-between items-center bg-gray-50 p-3 rounded-lg border">
-              <span className="text-sm font-medium text-gray-600">Cierre</span>
-              <span className="text-sm font-bold text-red-600">{convocation?.closeDate.toLocaleDateString('es-ES')}</span>
-            </div>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl border-l-4 border-brand-yellow shadow-sm">
-            <h2 className="text-lg font-bold text-brand-dark flex items-center mb-4">
-              <CheckCircle className="mr-2 h-5 w-5 text-brand-yellow" /> Requisitos
-            </h2>
-            <p className="whitespace-pre-line text-sm text-gray-600 bg-gray-50 p-4 rounded-lg border">
-              {convocation?.requirements}
-            </p>
-          </div>
         </div>
 
       </div>

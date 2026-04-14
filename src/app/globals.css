@@ -1,4 +1,50 @@
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;  
+
+@theme {
+  --color-wp-black: #000000;
+  --color-wp-gray: #abb8c3;
+  --color-wp-white: #ffffff;
+  --color-wp-pink: #f78da7;
+  --color-wp-red: #cf2e2e;
+  --color-wp-orange: #ff6900;
+  --color-wp-yellow: #fcb900;
+  --color-wp-green-light: #7bdcb5;
+  --color-wp-green: #00d084;
+  --color-wp-blue-light: #8ed1fc;
+  --color-wp-blue: #0693e3;
+  --color-wp-purple: #9b51e0;
+  --color-wp-primary: #4BaF47;
+}
+
+@layer base {
+  body {
+    @apply bg-wp-primary text-wp-white;
+  }
+
+  main,
+  footer {
+    @apply bg-wp-white text-wp-black border border-black;
+  }
+}
+
+@layer components {
+  .theme-card {
+    @apply bg-wp-white text-wp-black border border-black rounded-xl shadow-lg;
+  }
+
+  .theme-card-soft {
+    @apply bg-wp-white/95 text-wp-black border border-black rounded-xl shadow-sm;
+  }
+
+  .theme-button {
+    @apply bg-wp-primary text-wp-white border border-black rounded-lg shadow transition hover:bg-wp-primary/90;
+  }
+
+  .theme-button-secondary {
+    @apply bg-wp-white text-wp-primary border border-black rounded-lg shadow transition hover:bg-wp-white/90;
+  }
+
+  .theme-input {
+    @apply w-full border border-black p-2 rounded focus:ring-2 focus:ring-wp-primary;
+  }
+}

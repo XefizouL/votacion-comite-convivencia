@@ -10,10 +10,9 @@ import { existsSync, mkdirSync } from "fs"
 export async function createCandidate(formData: FormData) {
   const fullName = formData.get('fullName') as string;
   const position = formData.get('position') as string;
-  const dependency = formData.get('dependency') as string;
   const file = formData.get('photo') as File;
 
-  if (!fullName || !position || !dependency || !file || file.size === 0) {
+  if (!fullName || !position || !file || file.size === 0) {
     return { error: "Todos los campos y la fotografía son obligatorios." };
   }
 
@@ -45,7 +44,6 @@ export async function createCandidate(formData: FormData) {
       data: {
         fullName,
         position,
-        dependency,
         photoUrl,
         status: "PENDING"
       }

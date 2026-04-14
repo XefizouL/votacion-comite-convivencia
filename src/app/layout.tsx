@@ -12,26 +12,25 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="es">
-      <body className={`${inter.className} bg-gray-50 flex flex-col min-h-screen`}>
-        {/* El menú superior global */}
-        <Navbar />
+      <body className={`${inter.className} bg-wp-primary text-wp-white flex flex-col min-h-screen`}>
         
-        {/* El contenido de cada página */}
+        <Navbar />
+
         <div className="flex-grow">
           {children}
         </div>
 
-        {/* Pie de página global */}
-        <footer className="bg-white border-t border-gray-200 py-6 mt-auto">
-          <div className="max-w-7xl mx-auto px-4 text-center text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} Sistema de Elecciones Institucionales. Todos los derechos reservados.
+        <footer className="bg-wp-primary border-t border-black py-6 mt-auto">
+          <div className="max-w-7xl mx-auto px-4 text-center text-sm text-wp-white">
+            &copy; {new Date().getFullYear()} Sistema de Elecciones Institucionales.
           </div>
         </footer>
+
       </body>
     </html>
   );
