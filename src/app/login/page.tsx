@@ -28,10 +28,10 @@ export default function LoginPage() {
   }
 
   return (
-    /* --- FONDO DE IMAGEN APLICADO --- */
+   
     <main className="min-h-screen bg-[url('/fondo.png')] bg-cover bg-center bg-no-repeat flex items-center justify-center p-4">
       
-      {/* Contenedor del Formulario */}
+   
       <div className="w-full max-w-md bg-wp-white p-8 rounded-xl shadow-lg border-2 border-black">
 
         <Link href="/" className="inline-flex items-center text-sm text-wp-primary mb-6 hover:underline font-medium">
@@ -64,7 +64,7 @@ export default function LoginPage() {
             <label className="text-xs font-bold text-wp-black uppercase ml-1">Identificación</label>
             <input 
               name="identifier"
-              placeholder="Documento o correo"
+              placeholder="Correo Electronico"
               required
               className="w-full border-2 border-gray-200 p-3 rounded-lg focus:border-wp-primary outline-none transition-colors text-wp-black"
             />
