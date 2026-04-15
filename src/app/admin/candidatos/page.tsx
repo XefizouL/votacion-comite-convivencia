@@ -2,6 +2,8 @@ import { getAllCandidates, approveCandidate, rejectCandidate } from "@/actions/c
 import { getConvocation } from "@/actions/convocation";
 
 
+export const dynamic = 'force-dynamic';
+
 async function approveCandidateAction(candidateId: string, formData: FormData) {
   "use server";
   await approveCandidate(candidateId);

@@ -54,6 +54,9 @@ export async function createCandidate(formData: FormData) {
       }
     });
 
+    // ESTA LÍNEA ES LA QUE FALTABA: Refresca el panel cuando alguien se postula
+    revalidatePath('/admin/candidatos');
+
     return { success: "Postulación enviada con éxito. Está pendiente de aprobación." };
   } catch (error) {
     console.error(error);
