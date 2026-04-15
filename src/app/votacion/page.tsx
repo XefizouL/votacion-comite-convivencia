@@ -56,7 +56,7 @@ export default function VotacionPage() {
       <div className="max-w-5xl mx-auto bg-green-600 border-2 border-black rounded-3xl shadow-xl p-8">
 
         <div className="text-center mb-10">
-          <h1 className="text-3xl font-bold text-blue-600 mb-2">Tarjetón Electoral</h1>
+          <h1 className="text-3xl font-bold text-wp-white mb-2">Tarjetón Electoral</h1>
           <p className="text-wp-black/100 font-semibold">Seleccione un candidato de la lista</p>
         </div>
 
