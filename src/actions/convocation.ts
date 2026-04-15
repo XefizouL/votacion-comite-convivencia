@@ -4,12 +4,12 @@ import prisma from "@/lib/prisma"
 export async function getConvocation() {
   let convocation = await prisma.convocation.findFirst();
   
-  const newRequirements = `Ser funcionario de planta activo
-No presentar sanciones disciplinarias vigentes
-Tener contrato vigente con ASMETA
-Estar en ejercicio de sus funciones al momento de la postulación
-Tener al menos 6 meses de antigüedad en la empresa
-Manifestar disponibilidad de tiempo para ejercer las funciones`;
+  const newRequirements = `Ser contratista activo de ASMETA al momento de la postulación
+ No tener sanciones disciplinarias vigentes
+ No encontrarse en conflictos de interés que afecten su imparcialidad
+ Manifestar voluntariamente su interés en participar
+ Diligenciar y firmar el formato de postulación
+ Contar con disponibilidad de tiempo para participar en actividades del Comité (cuando sea requerido)`;
 
 
   const dataPayload = {

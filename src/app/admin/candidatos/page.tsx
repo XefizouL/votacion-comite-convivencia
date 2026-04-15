@@ -1,7 +1,6 @@
 import { getAllCandidates, approveCandidate, rejectCandidate } from "@/actions/candidates";
 import { getConvocation } from "@/actions/convocation";
 
-
 export const dynamic = 'force-dynamic';
 
 async function approveCandidateAction(candidateId: string, formData: FormData) {
@@ -15,8 +14,11 @@ async function rejectCandidateAction(candidateId: string, formData: FormData) {
 }
 
 export default async function AdminCandidatesPage() {
-  const candidates = await getAllCandidates();
-  const convocation = await getConvocation();
+  // Ejecución en paralelo para mayor velocidad
+  const [candidates, convocation] = await Promise.all([
+    getAllCandidates(),
+    getConvocation()
+  ]);
 
   const openDate = convocation?.openDate
     ? new Date(convocation.openDate).toLocaleDateString("es-CL", {
@@ -45,7 +47,6 @@ export default async function AdminCandidatesPage() {
         <p className="text-wp-black/70 mb-8">
           Aprueba o rechaza las postulaciones (Máximo 4 candidatos oficiales).
         </p>
-
     
         <div className="grid gap-6 mb-8 md:grid-cols-2">
           <div className="rounded-3xl border border-black/10 bg-slate-100 p-6">
@@ -62,7 +63,6 @@ export default async function AdminCandidatesPage() {
             <p className="text-2xl font-bold text-wp-black">{closeDate}</p>
           </div>
         </div>
-
         
         <div className="bg-wp-white rounded-xl shadow-sm border border-black overflow-hidden">
           <table className="w-full text-left border-collapse">
@@ -86,8 +86,6 @@ export default async function AdminCandidatesPage() {
 
               {candidates.map((candidate) => (
                 <tr key={candidate.id} className="border-b hover:bg-wp-primary/10">
-                  
-                 
                   <td className="p-4">
                     <img
                       src={candidate.photoUrl}
@@ -95,13 +93,9 @@ export default async function AdminCandidatesPage() {
                       className="w-12 h-12 rounded-full object-cover border border-black"
                     />
                   </td>
-
-                  
                   <td className="p-4 font-medium text-wp-black">
                     {candidate.fullName}
                   </td>
-
-                  
                   <td className="p-4">
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-semibold
@@ -120,12 +114,9 @@ export default async function AdminCandidatesPage() {
                         : "Pendiente"}
                     </span>
                   </td>
-
-                  {/* Acciones */}
                   <td className="p-4 text-center space-x-2">
                     {candidate.status === "PENDING" && (
                       <>
-                        {/* Aprobar */}
                         <form
                           action={approveCandidateAction.bind(null, candidate.id)}
                           className="inline"
@@ -134,8 +125,6 @@ export default async function AdminCandidatesPage() {
                             Aprobar
                           </button>
                         </form>
-
-                        {/* Rechazar */}
                         <form
                           action={rejectCandidateAction.bind(null, candidate.id)}
                           className="inline"

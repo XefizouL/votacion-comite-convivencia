@@ -9,6 +9,7 @@ export default function RegisterPage() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [docValue, setDocValue] = useState(""); 
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -25,11 +26,17 @@ export default function RegisterPage() {
     setLoading(false);
   }
 
+  
+  const handleDocumentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+  
+    const onlyNums = value.replace(/[^0-9]/g, "");
+    setDocValue(onlyNums);
+  };
+
   return (
-    /* --- CAMBIO AQUÍ: Se reemplazó bg-wp-primary por la imagen de fondo --- */
     <main className="min-h-screen bg-[url('/fondo.png')] bg-cover bg-center bg-no-repeat flex items-center justify-center p-4">
       
-      {/* El contenedor blanco se mantiene para que el formulario sea legible */}
       <div className="w-full max-w-md bg-wp-white p-8 rounded-xl shadow-lg border border-black">
 
         <Link href="/" className="inline-flex items-center text-sm text-wp-primary mb-6 hover:underline">
@@ -51,12 +58,20 @@ export default function RegisterPage() {
             required 
             className="w-full border p-2 rounded focus:ring-2 focus:ring-wp-blue outline-none" 
           />
+
+          {/* Input de Documento mejorado */}
           <input 
             name="documentId" 
+            type="text"
+            inputMode="numeric" // Optimiza el teclado en móviles
+            pattern="[0-9]*"    // Validación nativa del navegador
+            value={docValue}
+            onChange={handleDocumentChange}
             placeholder="Nº de documento" 
             required 
             className="w-full border p-2 rounded focus:ring-2 focus:ring-wp-blue outline-none" 
           />
+
           <input 
             name="email" 
             type="email" 

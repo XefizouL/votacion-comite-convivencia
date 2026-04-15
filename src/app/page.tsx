@@ -82,7 +82,7 @@ export default async function Home() {
             {/* Requisitos Dinámicos */}
             <div className="bg-wp-primary/10 rounded-3xl border border-wp-primary/20 p-6">
               <p className="text-sm uppercase tracking-[0.2em] text-wp-primary font-semibold mb-3">
-                Requisitos
+                Requisitos para Postularse
               </p>
               <ul className="list-disc list-inside text-wp-black/80 leading-relaxed space-y-1">
                 {convocation?.requirements
@@ -97,17 +97,17 @@ export default async function Home() {
             {/* Perfil Fijo */}
             <div className="bg-wp-primary/10 rounded-3xl border border-wp-primary/20 p-6">
               <p className="text-sm uppercase tracking-[0.2em] text-wp-primary font-semibold mb-3">
-                Perfil y Competencias Requeridas
+                PERFIL DEL VOCERO DE LOS CONTRATISTAS
               </p>
 
               <ul className="list-disc list-inside text-wp-black/80 leading-relaxed space-y-1">
-                <li>Respeto por los demás y por las normas</li>
-                <li>Capacidad de escucha activa</li>
-                <li>Imparcialidad en la toma de decisiones</li>
-                <li>Discreción y manejo confidencial de información</li>
-                <li>Equilibrio emocional y serenidad</li>
-                <li>Habilidades de mediación y resolución de conflictos</li>
+                <li>Persona con alto sentido de responsabilidad y compromiso </li>
+                <li>Capacidad de actuar con imparcialidad y objetividad</li>
                 <li>Comunicación asertiva y ética profesional</li>
+                <li>Reconocido por su comportamiento ético y respetuoso</li>
+                <li>Interés en promover ambientes laborales sanos</li>
+                <li>Disposición para apoyar procesos de mejora del clima laboral</li>
+                
               </ul>
             </div>
           </div>
