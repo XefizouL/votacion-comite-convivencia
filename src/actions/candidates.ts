@@ -2,11 +2,8 @@
 
 import prisma from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
-import { writeFile } from "fs/promises"
-import path from "path"
-import { existsSync, mkdirSync } from "fs"
 
-// 1. Postular un candidato (Guardar datos y foto)
+// 1. Postular un candidato (Guardar datos y enviar foto a la nube ImgBB)
 export async function createCandidate(formData: FormData) {
   const fullName = formData.get('fullName') as string;
   const position = formData.get('position') as string;
@@ -16,30 +13,38 @@ export async function createCandidate(formData: FormData) {
     return { error: "Todos los campos y la fotografía son obligatorios." };
   }
 
+  // Asegurarnos de que tenemos la API Key
+  const apiKey = process.env.IMGBB_API_KEY;
+  if (!apiKey) {
+    return { error: "Error de configuración del servidor: Falta API Key de imágenes." };
+  }
+
   try {
-    // Preparar la imagen para guardarla localmente
+    // 1. Convertir la imagen a formato Base64 para que la nube la acepte
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
+    const base64Image = buffer.toString('base64');
 
-    // Crear un nombre único para la foto
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    const ext = file.name.split('.').pop();
-    const filename = `candidato-${uniqueSuffix}.${ext}`;
+    // 2. Preparar el envío a ImgBB
+    const imgData = new FormData();
+    imgData.append('image', base64Image);
 
-    // Asegurar que la carpeta public/uploads exista
-    const uploadDir = path.join(process.cwd(), "public/uploads");
-    if (!existsSync(uploadDir)) {
-      mkdirSync(uploadDir, { recursive: true });
+    // 3. Enviar la imagen a la nube
+    const imgbbResponse = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
+      method: 'POST',
+      body: imgData,
+    });
+
+    const imgbbResult = await imgbbResponse.json();
+
+    if (!imgbbResponse.ok || !imgbbResult.success) {
+      throw new Error("No se pudo subir la imagen a la nube.");
     }
 
-    // Guardar la imagen en public/uploads/
-    const filepath = path.join(uploadDir, filename);
-    await writeFile(filepath, buffer);
+    // 4. Obtener la URL pública final de la imagen
+    const photoUrl = imgbbResult.data.url;
 
-    // La URL pública que guardaremos en la base de datos
-    const photoUrl = `/uploads/${filename}`;
-
-    // Crear el registro en la base de datos (Estado: PENDING por defecto)
+    // 5. Crear el registro en la base de datos con la URL de la nube
     await prisma.candidate.create({
       data: {
         fullName,
@@ -59,7 +64,6 @@ export async function createCandidate(formData: FormData) {
 // 2. Aprobar un candidato (Regla: Máximo 4 aprobados)
 export async function approveCandidate(candidateId: string) {
   try {
-    // Contar cuántos están aprobados actualmente
     const approvedCount = await prisma.candidate.count({
       where: { status: "APPROVED" }
     });
@@ -73,7 +77,7 @@ export async function approveCandidate(candidateId: string) {
       data: { status: "APPROVED" }
     });
 
-    revalidatePath('/admin/candidatos'); // Refresca la tabla del admin en tiempo real
+    revalidatePath('/admin/candidatos'); // Refresca la tabla del admin
     return { success: true };
   } catch (error) {
     return { error: "Error al aprobar al candidato." };
