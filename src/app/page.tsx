@@ -65,7 +65,7 @@ export default async function Home() {
                   Inicia: 27 de Abril, 08:00 AM
                 </p>
                 <p className="text-sm font-bold">
-                  Cierra: 28 de Abril, 08:00 AM
+                  Cierra: 29 de Abril, 08:00 AM
                 </p>
               </div>
             </div>
